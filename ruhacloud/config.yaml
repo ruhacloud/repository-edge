@@ -1,0 +1,33 @@
+name: ruhacloud
+version: dev
+slug: ruhacloud
+description: Remote cloud
+url: https://github.com/ruhacloud/addon-ruhacloud
+init: false
+arch:
+- aarch64
+- amd64
+- armv7
+host_dbus: true
+hassio_api: true
+host_network: true
+privileged:
+- NET_RAW
+- NET_ADMIN
+- SYS_ADMIN
+devices:
+- /dev/net/tun
+map:
+- ssl:rw
+- share:rw
+ports:
+  51820/udp: 51820
+ports_description:
+  51820/udp: 'WireGuard: forward this port in your router'
+options:
+  log_level: info
+  token: ''
+schema:
+  log_level: list(trace|debug|info|notice|warning|error|fatal)
+  token: str
+image: ghcr.io/ruhacloud/addon-ruhacloud/{arch}
